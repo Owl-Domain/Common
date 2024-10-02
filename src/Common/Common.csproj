@@ -1,0 +1,54 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <!-- Project -->
+  <PropertyGroup Label="project">
+    <TargetFrameworks>netstandard2.1</TargetFrameworks>
+    <LangVersion>12</LangVersion>
+    <Nullable>enable</Nullable>
+
+    <AssemblyName>OwlDomain.Common</AssemblyName>
+    <RootNamespace>OwlDomain.Common</RootNamespace>
+
+    <GenerateDocumentationFile>true</GenerateDocumentationFile>
+    <Deterministic>true</Deterministic>
+  </PropertyGroup>
+
+  <!-- Nuget package -->
+  <PropertyGroup Label="nuget">
+    <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
+
+    <IncludeSymbols>true</IncludeSymbols>
+    <SymbolPackageFormat>snupkg</SymbolPackageFormat>
+
+    <Title>OwlDomain.Common</Title>
+    <Description>A package that contains various commonly used code.</Description>
+    <PackageTags>common</PackageTags>
+
+    <Version>1.0.0</Version>
+
+    <Authors>Owl Domain, Nightowl</Authors>
+    <Company>OwlDomain</Company>
+
+    <PackageReadmeFile>readme.md</PackageReadmeFile>
+    <PackageLicenseFile>license.md</PackageLicenseFile>
+    <PackageProjectUrl>https://github.com/Owl-Domain/Common</PackageProjectUrl>
+
+    <PackageIcon>icon.png</PackageIcon>
+    <PackageIconUrl>https://github.com/Owl-Domain/Common/blob/master/icon.png?raw=true</PackageIconUrl>
+  </PropertyGroup>
+
+  <!-- Resources -->
+  <ItemGroup Label="resources">
+    <None Include="readme.md" Pack="true" PackagePath="\" />
+    <None Include="../../license.md" Pack="true" PackagePath="\" />
+    <None Include="../../icon.png" Pack="true" PackagePath="\" />
+  </ItemGroup>
+
+  <!-- Repository -->
+  <PropertyGroup Label="repository">
+    <RepositoryType>git</RepositoryType>
+    <RepositoryBranch>master</RepositoryBranch>
+    <RepositoryUrl>https://github.com/Owl-Domain/Common</RepositoryUrl>
+  </PropertyGroup>
+
+</Project>

@@ -14,6 +14,10 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "misc", "misc", "{226F97FD-F
 		..\readme.md = ..\readme.md
 	EndProjectSection
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Common.Tests", "Common.Tests\Common.Tests.csproj", "{44C9369E-F0CA-45D6-A82E-41C67160929D}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Common", "Common\Common.csproj", "{FDFE7E3E-4929-4C42-AEBD-546405C40005}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -24,6 +28,14 @@ Global
 		{E06E4A7E-D2D7-4EE9-AC5B-B5D1AD581906}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{E06E4A7E-D2D7-4EE9-AC5B-B5D1AD581906}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{E06E4A7E-D2D7-4EE9-AC5B-B5D1AD581906}.Release|Any CPU.Build.0 = Release|Any CPU
+		{44C9369E-F0CA-45D6-A82E-41C67160929D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{44C9369E-F0CA-45D6-A82E-41C67160929D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{44C9369E-F0CA-45D6-A82E-41C67160929D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{44C9369E-F0CA-45D6-A82E-41C67160929D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{FDFE7E3E-4929-4C42-AEBD-546405C40005}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{FDFE7E3E-4929-4C42-AEBD-546405C40005}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{FDFE7E3E-4929-4C42-AEBD-546405C40005}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{FDFE7E3E-4929-4C42-AEBD-546405C40005}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

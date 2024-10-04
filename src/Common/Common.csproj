@@ -15,7 +15,6 @@
 
   <!-- Package references -->
   <ItemGroup Label="packages">
-    <PackageReference Include="OwlDomain.Common.Throw.Base" Version="2.0.1" />
     <PackageReference Include="OwlDomain.Common.Throw" Version="2.0.1" />
     <PackageReference Include="OwlDomain.Common.Throw.Guards" Version="2.0.1" />
   </ItemGroup>

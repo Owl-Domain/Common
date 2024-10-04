@@ -23,7 +23,10 @@ public abstract class DisposableBase : IDisposable, IAsyncDisposable
       GC.SuppressFinalize(this);
    }
 
-   private void Dispose(bool deterministic)
+   /// <summary>Disposes any resources used by the instance.</summary>
+   /// <param name="deterministic">Whether managed resources can be disposed.</param>
+   /// <remarks>If called from a finaliser, the <paramref name="deterministic"/> argument should be <see langword="false"/>.</remarks>
+   protected void Dispose(bool deterministic)
    {
       if (IsDisposed)
          return;
@@ -37,11 +40,9 @@ public abstract class DisposableBase : IDisposable, IAsyncDisposable
    }
 
    /// <summary>Disposes the managed resources.</summary>
-   [ExcludeFromCodeCoverage]
    protected virtual void DisposeManaged() { }
 
    /// <summary>Disposes the unmanaged resources.</summary>
-   [ExcludeFromCodeCoverage]
    protected virtual void DisposeUnmanaged() { }
 
    /// <inheritdoc/>
@@ -60,6 +61,7 @@ public abstract class DisposableBase : IDisposable, IAsyncDisposable
 
    /// <summary>Disposes the managed resources.</summary>
    /// <returns>A task representing the asynchronous operation.</returns>
+   /// <remarks>The default implementation will invoke the <see cref="DisposeManaged"/> method.</remarks>
    protected virtual ValueTask DisposeManagedAsync()
    {
       DisposeManaged();
@@ -68,6 +70,7 @@ public abstract class DisposableBase : IDisposable, IAsyncDisposable
 
    /// <summary>Disposes the unmanaged resources.</summary>
    /// <returns>A task representing the asynchronous operation.</returns>
+   /// <remarks>The default implementation will invoke the <see cref="DisposeUnmanaged"/> method.</remarks>
    protected virtual ValueTask DisposeUnmanagedAsync()
    {
       DisposeUnmanaged();

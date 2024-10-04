@@ -12,8 +12,16 @@ public sealed class DisposableBaseTests
       #endregion
 
       #region Methods
-      protected override void DisposeManaged() => _disposeManagedCallback.Invoke();
-      protected override void DisposeUnmanaged() => _disposeUnmanagedCallback.Invoke();
+      protected override void DisposeManaged()
+      {
+         base.DisposeManaged();
+         _disposeManagedCallback.Invoke();
+      }
+      protected override void DisposeUnmanaged()
+      {
+         base.DisposeUnmanaged();
+         _disposeUnmanagedCallback.Invoke();
+      }
       #endregion
    }
    private sealed class AsyncTestDisposable(Action disposeManagedCallback, Action disposeUnmanagedCallback) : DisposableBase
@@ -24,15 +32,15 @@ public sealed class DisposableBaseTests
       #endregion
 
       #region Methods
-      protected override ValueTask DisposeManagedAsync()
+      protected override async ValueTask DisposeManagedAsync()
       {
+         await base.DisposeManagedAsync();
          _disposeManagedCallback.Invoke();
-         return default;
       }
-      protected override ValueTask DisposeUnmanagedAsync()
+      protected override async ValueTask DisposeUnmanagedAsync()
       {
+         await base.DisposeUnmanagedAsync();
          _disposeUnmanagedCallback.Invoke();
-         return default;
       }
       #endregion
    }

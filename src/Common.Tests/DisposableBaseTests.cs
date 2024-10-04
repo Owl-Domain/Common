@@ -11,25 +11,16 @@ public sealed class DisposableBaseTests
       private readonly Action _disposeUnmanagedCallback = disposeUnmanagedCallback;
       #endregion
 
-      #region Properties
-      new public bool IsDisposed => base.IsDisposed;
-      #endregion
-
       #region Methods
       protected override void DisposeManaged() => _disposeManagedCallback.Invoke();
       protected override void DisposeUnmanaged() => _disposeUnmanagedCallback.Invoke();
       #endregion
    }
-
    private sealed class AsyncTestDisposable(Action disposeManagedCallback, Action disposeUnmanagedCallback) : DisposableBase
    {
       #region Fields
       private readonly Action _disposeManagedCallback = disposeManagedCallback;
       private readonly Action _disposeUnmanagedCallback = disposeUnmanagedCallback;
-      #endregion
-
-      #region Properties
-      new public bool IsDisposed => base.IsDisposed;
       #endregion
 
       #region Methods
@@ -43,6 +34,12 @@ public sealed class DisposableBaseTests
          _disposeUnmanagedCallback.Invoke();
          return default;
       }
+      #endregion
+   }
+   private sealed class SimpleTestDisposable : DisposableBase
+   {
+      #region Methods
+      new public void ThrowIfDisposed() => base.ThrowIfDisposed();
       #endregion
    }
    #endregion
@@ -230,6 +227,37 @@ public sealed class DisposableBaseTests
          .IsTrue(sut.IsDisposed)
          .AreEqual(disposedManagedCount, 1)
          .AreEqual(disposedUnmanagedCount, 1);
+   }
+
+   [TestMethod]
+   public void ThrowIfDisposed_NotDisposed_DoesNotThrowAntException()
+   {
+      // Arrange
+      SimpleTestDisposable sut = new();
+
+      // Act
+      void Act() => sut.ThrowIfDisposed();
+
+      // Assert
+      Assert.That.DoesNotThrowAnyException(Act);
+   }
+
+   [TestMethod]
+   public void ThrowIfDisposed_IsDisposed_ThrowsObjectDisposedException()
+   {
+      // Arrange
+      const string expectedName = nameof(SimpleTestDisposable);
+
+      SimpleTestDisposable sut = new();
+      sut.Dispose();
+
+      // Act
+      void Act() => sut.ThrowIfDisposed();
+
+      // Assert
+      Assert.That
+         .ThrowsExactException(Act, out ObjectDisposedException exception)
+         .AreEqual(exception.ObjectName, expectedName);
    }
    #endregion
 }

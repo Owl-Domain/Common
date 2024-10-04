@@ -7,7 +7,7 @@ public abstract class DisposableBase : IDisposable, IAsyncDisposable
 {
    #region Properties
    /// <summary>Whether the instance has been disposed already.</summary>
-   protected bool IsDisposed { get; private set; }
+   public bool IsDisposed { get; private set; }
    #endregion
 
    #region Constructors
@@ -72,6 +72,13 @@ public abstract class DisposableBase : IDisposable, IAsyncDisposable
    {
       DisposeUnmanaged();
       return default;
+   }
+
+   /// <summary>Throws the <see cref="ObjectDisposedException"/> if the instance has been disposed.</summary>
+   protected void ThrowIfDisposed()
+   {
+      if (IsDisposed)
+         Throw.For.ObjectDisposed(GetType().Name);
    }
    #endregion
 }
